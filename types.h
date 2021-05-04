@@ -1,6 +1,6 @@
 #ifndef TYPES_H
 #define TYPES_H
-
+// BIOS Colours
 #define BLACK 0x0000
 #define BLUE 0x0001
 #define GREEN 0x0010
@@ -17,7 +17,7 @@
 #define LIGHT_MAGENTA 0x1101
 #define YELLOW 0x1110
 #define WHITE 0x1111
-
+// Types
 typedef char int8_t;
 typedef unsigned char uint8_t;
 
