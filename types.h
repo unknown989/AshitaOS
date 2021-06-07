@@ -18,7 +18,7 @@
 #define YELLOW 0x1110
 #define WHITE 0x1111
 // Types
-typedef char int8_t;
+/*typedef char int8_t;
 typedef unsigned char uint8_t;
 
 typedef short int16_t;
@@ -29,6 +29,5 @@ typedef unsigned int uint32_t;
 
 typedef long long int int64_t;
 typedef unsigned long long int uint64_t;
-
-
+*/
 #endif

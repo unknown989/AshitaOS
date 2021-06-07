@@ -1,9 +1,13 @@
-GPPPARAMS = -m32 -nostdlib -fno-use-cxa-atexit -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore
+# GPPPARAMS = -m32 -nostdlib -fno-use-cxa-atexit -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore
+GPPPARAMS = -m32 -std=gnu99 -fno-use-cxa-atexit -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore
+
+
+
 ASPARAMS = --32
 LDPARAMS = -melf_i386
 
 objects = loader.o kernel.o
-
+all:fast
 %.o: %.cpp
 	g++ $(GPPPARAMS) -o $@ -c $<
 
@@ -35,7 +39,11 @@ kernel.iso : kernel.bin
 	grub-mkrescue --output=$@ iso
 	rm -rf iso
 	
+fast: kernel.iso
+	(killall qemu-system-x86_64 || true) 
+	qemu-system-x86_64 -kernel kernel.bin
+	
+	
 run:
-	(killall /usr/lib/virtualbox/VirtualBoxVM || true) 
-	sleep 1
-	/usr/lib/virtualbox/VirtualBoxVM --startvm "ashitaOS"
+	(killall qemu-system-x86_64 || true) 
+	qemu-system-x86_64 kernel.iso
