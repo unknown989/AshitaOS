@@ -1,0 +1,5 @@
+kernel.iso
+kernel.bin
+iso/*
+test*
+*.o
