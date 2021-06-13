@@ -3,16 +3,17 @@ GPPPARAMS = -m32 -ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti
 
 
 
-ASPARAMS = --32
+ASPARAMS = -felf32
 LDPARAMS = -melf_i386
 
 objects = loader.o kernel.o
 all:fast
-%.o: %.cpp
-	g++ $(GPPPARAMS) -o $@ -c $<
 
-%.o: %.s
-	as $(ASPARAMS) -o $@ -c $<
+%.o: %.c
+	gcc $(GPPPARAMS) -o $@ -c $<
+
+%.o: %.asm
+	nasm $(ASPARAMS) -o $@ $<
 	
 kernel.bin: linker.ld $(objects)
 	ld $(LDPARAMS) -T $< -o $@ $(objects)

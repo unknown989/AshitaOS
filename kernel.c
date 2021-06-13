@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "types.h"
+#include "include/stdio.h"
 
 #define TABSIZE 4
 
@@ -12,17 +13,6 @@ volatile int8_t* videoMemory = (volatile int8_t*)0xb8000;
 
 unsigned int x = 0,y = 0;
 
-// END
-// stdio.h
-// Get a char* length
-size_t strlen(char* str){
-	size_t len = 0;
-	while(str[len]){
-		len++;
-	}
-	return len;
-}
-//
 // Print a character to the bios terminal
 void puts(char c,unsigned int color){
 	int index = 2*(y * VGA_WIDTH + x);
@@ -59,8 +49,9 @@ void printf(char* str){
 	dbg_printf(str,WHITE);
 }
 
+extern void enter_v86(uint32_t ss, uint32_t esp, uint32_t cs, uint32_t eip);
 // Main kernel function where magic happens
-extern "C" void kmain(void* multiboot_struct,uint32_t magic){
+extern void kmain(void* multiboot_struct,uint32_t magic){
 	clear_screen();
 	dbg_printf((char*)"Ashita OS - Kernel Version : 0.1.0 Alpha\n\t",RED);
 	printf((char*)"Hello From Kernel");

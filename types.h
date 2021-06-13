@@ -18,6 +18,9 @@
 #define YELLOW 0xE
 #define WHITE 0xF
 
+
+
+
 // Types
 /*typedef char int8_t;
 typedef unsigned char uint8_t;
