@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "types.h"
-#include "include/stdio.h"
+#include "include/string.h"
 
 #define TABSIZE 4
 
